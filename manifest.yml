@@ -1,0 +1,10 @@
+---
+applications:
+- name: ucr-demo-01
+  buildpack: nodejs_buildpack
+  command: node app.js
+  memory: 128M
+  disk_quota: 128M
+  host: ucr-demo-01
+  services:
+  - mongodb-ucr
