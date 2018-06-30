@@ -20,41 +20,53 @@ module.exports = function (oApp) {
     });
 
     oApp.post('/api/usecase', (req, res) => {
-        var usecase = new Usecase({
-            usecaseId: req.body.usecaseId,
-            usecaseName: req.body.usecaseName,
-            usecaseDesc: req.body.usecaseDesc,
-            regionId: req.body.regionId,
-            industryId: req.body.industryId,
-            lineOfBusinessId: req.body.lineOfBusinessId,
-            technicalScenarioId: req.body.technicalScenarioId,
-            usecaseTypeId: req.body.usecaseTypeId,
-            sourceOfUsecaseId: req.body.sourceOfUsecaseId,
-            contactPerson: req.body.contactPerson,
-            customerName: req.body.customerName,
-            presentationLink: req.body.presentationLink,
-            demoLink: req.body.demoLink,
-            demoCredentials: req.body.demoCredentials,
-            goLive: req.body.goLive
-        });
-        
-        usecase.save().then((usecase) => {
-            res.send(usecase);
-        }, (err) => {
-            res.status(400).send(err);
-        });
+
+        var maxId = 1001;
+    
+        Usecase.find().sort({'_id':-1}).limit(1).exec(function(err, result) {
+            if(result.length!=0){
+                console.log("Incrementing id by 1");
+                maxId = result[0]._id + 1;
+            }
+
+            var usecase = new Usecase({
+                _id:  maxId,
+                usecaseName: req.body.usecaseName,
+                usecaseDesc: req.body.usecaseDesc,
+                ceeNameId: req.body.ceeNameId,
+                regionId: req.body.regionId,
+                industryId: req.body.industryId,
+                lineOfBusinessId: req.body.lineOfBusinessId,
+                technicalScenarioId: req.body.technicalScenarioId,
+                usecaseTypeId: req.body.usecaseTypeId,
+                sourceOfUsecaseId: req.body.sourceOfUsecaseId,
+                contactPerson: req.body.contactPerson,
+                customerName: req.body.customerName,
+                presentationLink: req.body.presentationLink,
+                demoLink: req.body.demoLink,
+                demoCredentials: req.body.demoCredentials,
+                goLive: req.body.goLive
+            });
+            
+            usecase.save().then((usecase) => {
+                res.send(usecase);
+            }, (err) => {
+                res.status(400).send(err);
+            });
+
+       });
     });
 
-    oApp.get('/api/usecase/:usecaseId', (req, res) => {
-        Usecase.findOne({usecaseId:req.params.usecaseId}).then((usecase) => {
+    oApp.get('/api/usecase/:id', (req, res) => {
+        Usecase.findOne({_id:req.params.id}).then((usecase) => {
             res.send({usecase});
         }, (err) => {
             res.status(400).send(err);
         });
     });
 
-    oApp.delete('/api/usecase/:usecaseId', (req, res) => {
-        Usecase.remove({usecaseId: req.params.usecaseId}).then((usecase) => {
+    oApp.delete('/api/usecase/:id', (req, res) => {
+        Usecase.remove({_id: req.params.id}).then((usecase) => {
             res.send('Successfully deleted');
         }, (err) => {
             res.status(400).send(err);
@@ -63,12 +75,13 @@ module.exports = function (oApp) {
 
     oApp.put('/api/usecase/:id', (req, res) => {
         Usecase.update({
-            usecaseId: req.params.usecaseId,
+            _id: req.params.id,
         }, {
             usecaseName: req.body.usecaseName,
             usecaseDesc: req.body.usecaseDesc,
             regionId: req.body.regionId,
             industryId: req.body.industryId,
+            ceeNameId: req.body.ceeNameId,
             lineOfBusinessId: req.body.lineOfBusinessId,
             technicalScenarioId: req.body.technicalScenarioId,
             usecaseTypeId: req.body.usecaseTypeId,

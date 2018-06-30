@@ -1,12 +1,10 @@
 let mongoose = require('mongoose');
 
 let Usecase = mongoose.model('Usecase',{
-    usecaseId: {
-        type : Number,
-        required: true,
-        unique: true
+    _id: {
+        type: Number,
+        required: true
     },
-
     usecaseName: {
         type : String,
         required : true
@@ -16,6 +14,10 @@ let Usecase = mongoose.model('Usecase',{
         required : true
     },
     regionId: {
+        type: Array,
+        required: true
+    },
+    ceeNameId: {
         type: Array,
         required: true
     },

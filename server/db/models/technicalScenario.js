@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let TechnicalScenario = mongoose.model('TechnicalScenario',{
-    technicalScenarioId: {
+    _id: {
         type : Number,
         required: true,
     },

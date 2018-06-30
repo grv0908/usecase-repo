@@ -1,11 +1,12 @@
 let mongoose = require('mongoose');
 
 let Link = mongoose.model('Link',{
-    linkId: {
+    
+    _id: {
         type : Number,
         required: true,
     },
-
+    
     linkName: {
         type : String,
         required : true

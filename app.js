@@ -25,6 +25,10 @@ require('./server/db/mongo-connect.js')(oAppEnv);
 // api
 //require('./server/api/info/info.js')(oApp, oAppEnv);
 require('./server/api/usecase.js')(oApp);
+require('./server/api/ceename.js')(oApp);
+require('./server/api/industry.js')(oApp);
+require('./server/api/link.js')(oApp);
+require('./server/api/region.js')(oApp);
 
 // express app listener
 oApp.listen(oAppEnv.port, function(){

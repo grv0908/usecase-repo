@@ -1,11 +1,12 @@
 let mongoose = require('mongoose');
 
 let LineOfBusiness = mongoose.model('LineOfBusiness',{
-    lineOfBusinessId: {
+    
+    _id: {
         type : Number,
         required: true,
     },
-
+    
     lineOfBusinessDesc: {
         type : String,
         required : true

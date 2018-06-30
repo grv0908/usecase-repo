@@ -1,11 +1,12 @@
 let mongoose = require('mongoose');
 
 let SourceOfUsecase = mongoose.model('SourceOfUsecase',{
-    sourceOfUsecaseId: {
+    
+    _id: {
         type : Number,
         required: true,
     },
-
+    
     sourceOfUsecaseDesc: {
         type : String,
         required : true
