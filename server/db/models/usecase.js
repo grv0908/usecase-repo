@@ -1,12 +1,62 @@
 let mongoose = require('mongoose');
 
-let usecaseSchema = mongoose.Schema({
-    id: Number,
-    usecase_name: String,
-    usecase_type: String,
-    usecase_desc: String
+let Usecase = mongoose.model('Usecase',{
+    usecaseId: {
+        type : Number,
+        required: true,
+        unique: true
+    },
+
+    usecaseName: {
+        type : String,
+        required : true
+    },
+    usecaseDesc: {
+        type : String,
+        required : true
+    },
+    regionId: {
+        type: Array,
+        required: true
+    },
+    industryId: {
+        type: Array,
+        required: true
+    },
+    lineOfBusinessId: {
+        type: Array,
+        required: true
+    },
+    technicalScenarioId: {
+        type: Array,
+        required: true
+    },
+    usecaseTypeId: {
+        type : Array,
+        required : true
+    },
+    sourceOfUsecaseId: {
+        type : Array,
+        required : true
+    },
+    contactPerson: {
+        type : String,
+    },
+    customerName: {
+        type : String,
+    },
+    presentationLink: {
+        type : String,
+    },
+    demoLink: {
+        type : String,
+    },
+    demoCredentials: {
+        type : String,
+    },
+    goLive: {
+        type : Boolean,
+    }
 });
 
-let Usecase = mongoose.model('Usecase', usecaseSchema);
-
-module.exports = Usecase;
+module.exports = {Usecase};
