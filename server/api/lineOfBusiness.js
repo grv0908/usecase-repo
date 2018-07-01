@@ -2,15 +2,15 @@ module.exports = function (oApp) {
 
     var {LineOfBusiness} = require('../db/models/lineOfBusiness.js');
 
-    oApp.get('/api/lobs', (req, res) => {
-        LineOfBusiness.find().then((industries) => {
-            res.send({industries});
+    oApp.get('/api/lineOfBusinesses', (req, res) => {
+        LineOfBusiness.find().then((lineOfBusinessesobs) => {
+            res.send({lineOfBusinesses});
         }, (err) => {
             res.status(400).send(err);
         })
     });
 
-    oApp.post('/api/lob', (req, res) => {
+    oApp.post('/api/lineOfBusiness', (req, res) => {
 
         var maxId = 1;
         LineOfBusiness.find().sort({'_id':-1}).limit(1).exec(function(err, result) {
@@ -31,7 +31,7 @@ module.exports = function (oApp) {
         });
     });
 
-    oApp.get('/api/lob/:id', (req, res) => {
+    oApp.get('/api/lineOfBusiness/:id', (req, res) => {
         LineOfBusiness.findOne({_id:req.params.id}).then((lineOfBusiness) => {
             res.send({lineOfBusiness});
         }, (err) => {
@@ -39,7 +39,7 @@ module.exports = function (oApp) {
         });
     });
 
-    oApp.delete('/api/lob/:id', (req, res) => {
+    oApp.delete('/api/lineOfBusiness/:id', (req, res) => {
         LineOfBusiness.remove({_id: req.params.id}).then((lineOfBusiness) => {
             res.send('Successfully deleted');
         }, (err) => {
@@ -47,7 +47,7 @@ module.exports = function (oApp) {
         });
     });
 
-    oApp.put('/api/lob/:id', (req, res) => {
+    oApp.put('/api/lineOfBusiness/:id', (req, res) => {
         LineOfBusiness.update({
             _id: req.params.id,
         }, {

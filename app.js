@@ -29,6 +29,10 @@ require('./server/api/ceename.js')(oApp);
 require('./server/api/industry.js')(oApp);
 require('./server/api/link.js')(oApp);
 require('./server/api/region.js')(oApp);
+require('./server/api/lineOfBusiness.js')(oApp);
+require('./server/api/sourceOfUsecase.js')(oApp);
+require('./server/api/technicalScenario.js')(oApp);
+require('./server/api/usecaseType.js')(oApp);
 
 // express app listener
 oApp.listen(oAppEnv.port, function(){
