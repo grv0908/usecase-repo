@@ -2,9 +2,9 @@ module.exports = function (oApp) {
 
     var {TechnicalScenario} = require('../db/models/technicalScenario.js');
 
-    oApp.get('/api/technicalScenarioes', (req, res) => {
-        TechnicalScenario.find().then((technicalScenarioes) => {
-            res.send({technicalScenarioes});
+    oApp.get('/api/technicalScenarios', (req, res) => {
+        TechnicalScenario.find().then((technicalScenarios) => {
+            res.send({technicalScenarios});
         }, (err) => {
             res.status(400).send(err);
         })

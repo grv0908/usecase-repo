@@ -3,8 +3,8 @@ module.exports = function (oApp) {
     var {Link} = require('../db/models/link.js');
 
     oApp.get('/api/links', (req, res) => {
-        Link.find().then((industries) => {
-            res.send({industries});
+        Link.find().then((links) => {
+            res.send({links});
         }, (err) => {
             res.status(400).send(err);
         })
