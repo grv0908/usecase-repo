@@ -1,6 +1,6 @@
 module.exports = function (oApp) {
 
-    var {SourceOfUsecase} = require('../db/models/sourceofUsecase.js');
+    var {SourceOfUsecase} = require('../db/models/sourceOfUsecase.js');
 
     oApp.get('/api/sourceOfUsecases', (req, res) => {
         SourceOfUsecase.find().then((sourceOfUsecases) => {

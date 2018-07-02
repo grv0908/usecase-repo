@@ -57,13 +57,85 @@ module.exports = function (oApp) {
        });
     });
 
+    // With joins
     oApp.get('/api/usecase/:id', (req, res) => {
-        Usecase.findOne({_id:req.params.id}).then((usecase) => {
+
+        Usecase.aggregate(
+            [
+                {
+                  $match: {
+                      _id: parseInt(req.params.id)
+                  }  
+                 },
+               {
+               $lookup:
+                 {
+                   from: "ceenames",
+                   localField : "ceeNameId",
+                    foreignField : "_id",
+                    as : "ceenames" 
+                 }
+               },
+               {
+               $lookup:
+                 {
+                   from: "industries",
+                   localField : "industryId",
+                    foreignField : "_id",
+                    as : "industries" 
+                 }
+               },
+               {
+               $lookup:
+                 {
+                   from: "lineofbusinesses",
+                   localField : "lineOfBusinessId",
+                    foreignField : "_id",
+                    as : "lineOfBusinesses" 
+                 }
+               },
+               {
+               $lookup:
+                 {
+                   from: "technicalscenarios",
+                   localField : "technicalScenarioId",
+                    foreignField : "_id",
+                    as : "technicalScenarios" 
+                 }
+               },
+               {
+               $lookup:
+                 {
+                   from: "usecasetypes",
+                   localField : "usecaseTypeId",
+                    foreignField : "_id",
+                    as : "usecaseTypes" 
+                 }
+               },
+               {
+               $lookup:
+                 {
+                   from: "sourceofusecases",
+                   localField : "sourceOfUsecaseId",
+                    foreignField : "_id",
+                    as : "sourceOfUsecases" 
+                 }
+               }  
+            ]).then((usecase) => {
             res.send({usecase});
         }, (err) => {
             res.status(400).send(err);
         });
     });
+
+
+
+    //     Usecase.findOne({_id:req.params.id}).then((usecase) => {
+    //         res.send({usecase});
+    //     }, (err) => {
+    //         res.status(400).send(err);
+    //     });
+    // });
 
     oApp.delete('/api/usecase/:id', (req, res) => {
         Usecase.remove({_id: req.params.id}).then((usecase) => {
