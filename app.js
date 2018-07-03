@@ -34,6 +34,7 @@ require('./server/api/sourceOfUsecase.js')(oApp);
 require('./server/api/technicalScenario.js')(oApp);
 require('./server/api/usecaseType.js')(oApp);
 require('./server/api/count.js')(oApp);
+require('./server/api/filter.js')(oApp);
 
 // express app listener
 oApp.listen(oAppEnv.port, function(){

@@ -25,7 +25,7 @@ module.exports = function (oApp) {
     
         Usecase.find().sort({'_id':-1}).limit(1).exec(function(err, result) {
             if(result.length!=0){
-                console.log("Incrementing id by 1");
+               // console.log("Incrementing id by 1");
                 maxId = result[0]._id + 1;
             }
 
