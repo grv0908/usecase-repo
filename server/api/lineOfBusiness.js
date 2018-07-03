@@ -3,7 +3,7 @@ module.exports = function (oApp) {
     var {LineOfBusiness} = require('../db/models/lineOfBusiness.js');
 
     oApp.get('/api/lineOfBusinesses', (req, res) => {
-        LineOfBusiness.find().then((lineOfBusinessesobs) => {
+        LineOfBusiness.find().then((lineOfBusinesses) => {
             res.send({lineOfBusinesses});
         }, (err) => {
             res.status(400).send(err);
